@@ -6,3 +6,7 @@ export 'food_model.dart';
 export 'restaurant_model.dart';
 export 'entertainment_model.dart';
 export 'personal_care_model.dart';
+export 'supermarket_item_model.dart';
+export 'product.dart';
+export 'product_detail_popup.dart';
+export 'user.dart';

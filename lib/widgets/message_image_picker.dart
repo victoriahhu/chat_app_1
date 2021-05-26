@@ -28,7 +28,7 @@ class _MessageImagePickerState extends State<MessageImagePicker> {
     return Column(
       children: [ IconButton(icon: Icon(
         CupertinoIcons.camera_fill,
-        color: Colors.blue[800],
+        color: Colors.blueAccent[400],
         size: 35,
       ), onPressed: _pickImage,
       ),

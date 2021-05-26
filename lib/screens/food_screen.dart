@@ -65,16 +65,6 @@ class _FoodScreenState extends State<FoodScreen> {
                         },
                       ),
                     ),
-                    Container(
-                      height: 57.6,
-                      width: 57.6,
-                      padding: EdgeInsets.all(18),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(9.6),
-                        color: Color(0x080a0928),
-                      ),
-                      child: SvgPicture.asset('assets/svg/icon_search.svg'),
-                    )
                   ],
                 ),
               ),
@@ -149,8 +139,7 @@ class _FoodScreenState extends State<FoodScreen> {
                         (int index) => GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => SelectedFoodScreen(
-                                foodModel: foodRecommendations[index])));
+                            builder: (context) => foodRecommendations[index].pageRoute));
                       },
                       child: Container(
                         margin: EdgeInsets.only(right: 28.8),
@@ -328,6 +317,7 @@ class _FoodScreenState extends State<FoodScreen> {
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height*0.12,),
+              Center(child: TextButton(onPressed: (){},child: Text("See all >>", style: TextStyle(color: Colors.grey, fontSize: 16, fontWeight: FontWeight.bold ),)),),
               //...
             ],
           ),

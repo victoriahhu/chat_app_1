@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Chat App',
       theme: ThemeData(
         primarySwatch: Colors.grey,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         accentColor: Colors.blueAccent[400],
         accentColorBrightness: Brightness.dark,
         visualDensity: VisualDensity.adaptivePlatformDensity,

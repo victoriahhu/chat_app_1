@@ -8,3 +8,5 @@ export 'categories_row.dart';
 export 'custom_tab_indicator.dart';
 export 'transport_gridview.dart';
 export 'tab_widget.dart';
+export 'drop_down_supermarket.dart';
+export 'counter.dart';

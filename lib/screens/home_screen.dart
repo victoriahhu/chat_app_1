@@ -36,17 +36,20 @@ class _HomeScreenState extends State<HomeScreen> {
     return CupertinoTabScaffold(
        //backgroundColor: Colors.black,
       tabBar: CupertinoTabBar(
-        backgroundColor: Colors.black,
-        activeColor: Colors.white,
+        backgroundColor: Colors.white,
+        activeColor: Colors.blueAccent[400],
         items: [
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.conversation_bubble),
+            //activeIcon: Icon(Icons.chat_bubble),
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.home),
+            icon: Icon(Icons.home_outlined),
+            activeIcon: Icon(Icons.home_filled)
           ),
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.profile_circled),
+            //activeIcon: Icon(Icons.person)
           ),
         ],
       ),

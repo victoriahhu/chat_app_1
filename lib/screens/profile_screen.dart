@@ -1,5 +1,6 @@
 import 'package:chatapp/screens/all_screens.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,7 +12,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Colors.black,
         title: Text(
           "Profile and Settings",
           style: TextStyle(
@@ -47,7 +48,8 @@ class ProfileScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 CircleAvatar(
-                                  backgroundImage: NetworkImage("https://www.searchpng.com/wp-content/uploads/2019/02/Profile-ICon.png"),
+                                  backgroundImage: NetworkImage(Firestore.instance
+                                      .collection("users").document("image_url").toString()),
                                 ),
                                 Column(
                                     children: [
@@ -72,6 +74,21 @@ class ProfileScreen extends StatelessWidget {
               tileColor: Colors.white,
               title: Text("Account", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
               leading: Icon(CupertinoIcons.lock),
+              trailing: Icon(CupertinoIcons.forward),
+              //subtitle: Text(message),
+              dense: true,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(17.0),
+              ),
+              onTap: () {
+                //...
+              },
+            ),
+            SizedBox(height: 2,),
+            ListTile(
+              tileColor: Colors.white,
+              title: Text("Payment options", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+              leading: Icon(Icons.credit_card_outlined,color: Colors.grey[400],),
               trailing: Icon(CupertinoIcons.forward),
               //subtitle: Text(message),
               dense: true,

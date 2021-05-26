@@ -38,7 +38,7 @@ class _NewMessageState extends State<NewMessage> {
       padding: EdgeInsets.all(8),
       child: Row(
         children: [
-          Material(color: Colors.black,child: IconButton(icon: Icon(CupertinoIcons.add, color: Theme.of(context).accentColor, size: 35,), onPressed: (){showCupertinoModalPopup(
+          Material(color: Colors.white,child: IconButton(icon: Icon(CupertinoIcons.add, color: Theme.of(context).accentColor, size: 35,), onPressed: (){showCupertinoModalPopup(
             context: context,
             builder: (BuildContext context) => CupertinoActionSheet(
               title: const Text('      Send...', style: TextStyle(fontSize: 20,),),
@@ -76,22 +76,21 @@ class _NewMessageState extends State<NewMessage> {
                 child: CupertinoTextField(
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
-                  placeholderStyle: TextStyle(color: Colors.white10, fontSize: 15),
+                  //placeholderStyle: TextStyle(color: Colors.white10, fontSize: 15),
                   placeholder: "   Your message...",
                   style: TextStyle(color: Colors.white, ),
                   controller: _controller,
-            decoration: BoxDecoration(color: Colors.grey[900],borderRadius: BorderRadius.circular(20)),
+            decoration: BoxDecoration(color: Colors.grey[100],borderRadius: BorderRadius.circular(15)),
             onChanged: (value) {setState(() {
                 _enteredMessage=value;
             });},
           ),
               )),
-          _enteredMessage.trim().isEmpty?IconButton(icon: Icon(Icons.mic_none, color: Theme.of(context).accentColor), onPressed: (){},):SizedBox(width: 4,),
+          _enteredMessage.trim().isEmpty?IconButton(icon: Icon(Icons.mic_none, color: Colors.blueAccent[400]), onPressed: (){},):SizedBox(width: 4,),
            _enteredMessage.trim().isEmpty?MessageImagePicker(_pickedImage):SizedBox(width: 4,),
           _enteredMessage.trim().isEmpty?SizedBox(width: 4,):CircleAvatar(
              radius: 18,
              backgroundColor: Colors.black,
-             //backgroundImage: NetworkImage("https://aeck.wap.sh/images/hinh-nen/hinh-nen-dien-thoai/hinh-nen-sac-mau-2d-3d/011_AECK.WAP.SH-hinh-nen-sac-mau-2D-3D-011.jpg"),
              child: Center(
                child: IconButton(
                  padding: EdgeInsets.all(0.0),

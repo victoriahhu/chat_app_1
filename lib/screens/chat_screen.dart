@@ -34,13 +34,13 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        actions: [IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.phone, color: Colors.white,)), IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.video_camera, color: Colors.white,))],
+        actions: [IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.phone_solid, color: Colors.white,)), IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.video_camera_solid, color: Colors.white,))],
         leading: IconButton(icon: Icon(CupertinoIcons.back, color: Colors.white,),onPressed: () {
           _navigateBack(context);
         },),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.blueAccent[400],
         title:  Text("Conversation 1", style: TextStyle(color: Colors. white38),)  ,
         //actions: [DropdownButton(underline: Container(), icon: Icon(Icons.more_horiz, color: Colors.white,), items: [DropdownMenuItem(child: Container(child: Row(children: [Icon(CupertinoIcons.square_arrow_left), SizedBox(width: 8,), Text("Logout")],),), value: "logout",)], onChanged: (itemIdentifier) {if (itemIdentifier == "logout") {FirebaseAuth.instance.signOut();}},)]
       ),

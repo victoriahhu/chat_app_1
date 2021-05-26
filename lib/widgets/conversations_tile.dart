@@ -1,23 +1,59 @@
 import 'package:flutter/material.dart';
 import '../screens/all_screens.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ConversationsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text("Conversation 1", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
-      leading: CircleAvatar(
-        backgroundImage: NetworkImage("https://www.searchpng.com/wp-content/uploads/2019/02/Profile-ICon.png"),
+    return
+    Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: GestureDetector(
+        onTap: () {
+          _navigateToNextScreen(context);
+        },
+        child: Container(
+            height: MediaQuery.of(context).size.height*0.2,
+            decoration: BoxDecoration( boxShadow: [
+              BoxShadow(
+                color: Colors.grey[400].withOpacity(0.3),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3), // changes position of shadow
+              ),
+            ],
+                borderRadius: BorderRadius.circular(23),
+                color: Colors.blue[100],
+            ),
+            child: Align(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 20.8, right: 20.8),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CircleAvatar(
+                          radius: 30,
+                          backgroundImage: NetworkImage(Firestore.instance
+                              .collection("users").document("image_url").toString()),
+                        ),
+                        Column(
+                            children: [
+                              SizedBox(height: MediaQuery.of(context).size.height*0.06,),
+                              Text(
+                                'Conversation 1',
+                                style: GoogleFonts.lato(
+                                    fontSize: 15.2,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.black),
+                              ),
+                              SizedBox(width: MediaQuery.of(context).size.width*0.5,child: Text("Message", style: GoogleFonts.lato(
+                                  color: Colors.grey[800]), overflow: TextOverflow.ellipsis, maxLines: 3, textAlign: TextAlign.center,))]
+                        ),]
+                  ),))),
       ),
-      //subtitle: Text(message),
-      dense: true,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(17.0),
-      ),
-      onTap: () {
-        _navigateToNextScreen(context);
-      },
     );
   }
 }
