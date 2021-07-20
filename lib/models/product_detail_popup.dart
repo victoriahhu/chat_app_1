@@ -35,13 +35,15 @@ class ProductDetailPopup extends StatelessWidget {
           fontSize: 16.8),),
       content: Column(children: [
         new Container(
-          decoration: BoxDecoration( borderRadius: BorderRadius.circular(20)),
           padding: EdgeInsets.all(20),
           height: MediaQuery.of(context).size.height*0.3,
           width: MediaQuery.of(context).size.height*3,
-          child: Image.network(
-            imageUrl,
-            fit: BoxFit.cover,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.network(
+              imageUrl,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.share, color: Colors.blueAccent, size: 30,)),Text("${price.toString()}\$", style: TextStyle(color: Colors.indigoAccent),),IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.heart, color: Colors.pink,size: 30,))],),
@@ -50,7 +52,7 @@ class ProductDetailPopup extends StatelessWidget {
           child: SingleChildScrollView(
             child: Text(
               description,
-              style: TextStyle(fontSize: 10),
+              style: TextStyle(fontSize: 10, color: Colors.grey),
             ),
           ),
         ),

@@ -21,7 +21,7 @@ class MyFirstTab extends StatelessWidget {
 class MySecondTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ConsumptionScreen();
+    return ForYouPage();
   }
 }
 class MyThirdTab extends StatelessWidget {

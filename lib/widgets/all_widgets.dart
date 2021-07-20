@@ -7,6 +7,7 @@ export 'user_image_picker.dart';
 export 'categories_row.dart';
 export 'custom_tab_indicator.dart';
 export 'transport_gridview.dart';
-export 'tab_widget.dart';
+export 'tab_widget1.dart';
 export 'drop_down_supermarket.dart';
 export 'counter.dart';
+export 'restaurant_tile.dart';

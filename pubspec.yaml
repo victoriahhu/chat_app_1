@@ -44,6 +44,11 @@ dependencies:
   geolocator: ^6.1.5
   geocoding: ^1.0.5
   sliding_up_panel: ^1.0.2
+  clipboard_manager: ^0.0.4
+  local_auth: ^0.6.3+4
+  file_picker: ^1.4.0+1
+  flushbar: ^1.9.0
+  flutter_downloader: ^1.6.1
 
 
 dev_dependencies:

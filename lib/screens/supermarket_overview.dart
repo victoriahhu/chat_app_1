@@ -111,7 +111,11 @@ class SupermarketOverview extends StatelessWidget {
 
         ]),
       ),
-    ));
+    ), floatingActionButton: FloatingActionButton.extended(
+      onPressed: (){},
+      icon: Icon(CupertinoIcons.cart),
+      label: Text('Check out'),
+    ),);
   }
 }
 

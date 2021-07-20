@@ -33,5 +33,5 @@ class FavoritesScreen extends StatelessWidget {
   }
 }
 void _navigateToConsumptionScreen(BuildContext context) {
-  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ConsumptionScreen()));
+  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ForYouPage()));
 }

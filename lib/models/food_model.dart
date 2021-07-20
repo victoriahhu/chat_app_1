@@ -47,10 +47,10 @@ var foodData = [
     //"price": 110
   },
   {
-    "name": "Butcher/Fish Shop",
+    "name": "Drugstore",
     "tagLine": "",
     "image":
-    "https://cropper.watch.aetnd.com/public-content-aetn.video.aetnd.com/video-thumbnails/AETN-History_VMS/438/659/BRAND_THC_BUTC_223014_NLM_365415_2398_60_20190517_02_HD.jpg",
+    "http://www.pharmacie-wambrechies.fr/wp-content/uploads/2019/08/wambrechies-pharmacie-cambier-16.jpg",
 
     "pageRoute":
     "",

@@ -250,11 +250,10 @@ class _FoodScreenState extends State<FoodScreen> {
                   children: List.generate(
                     restaurantRecommendations.length,
                         (int index) => GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => SelectedRestaurantScreen(
-                                restaurantModel: restaurantRecommendations[index])));
-                      },
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => restaurantRecommendations[index].pageRoute));
+                          },
                       child: Container(
                         margin: EdgeInsets.only(right: 28.8),
                         width: 333.6,
@@ -362,5 +361,5 @@ class _FoodScreenState extends State<FoodScreen> {
 
 void _navigateToConsumptionScreen(BuildContext context) {
   Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => ConsumptionScreen()));
+      .push(MaterialPageRoute(builder: (context) => ForYouPage()));
 }

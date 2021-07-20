@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:clipboard_manager/clipboard_manager.dart';
 import '../widgets/message_bubble.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -138,9 +139,7 @@ class ProfileScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(17.0),
               ),
-              onTap: () {
-                //...
-              },
+              onTap:  (){_navigateToInfoPage(context);},
             ),SizedBox(height: 2,),
             ListTile(
               tileColor: Colors.white,
@@ -152,7 +151,7 @@ class ProfileScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(17.0),
               ),
               onTap: () {
-                //...
+                _recommendDialog(context);
               },
             ),
             SizedBox(height: 40,),
@@ -167,7 +166,7 @@ class ProfileScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(17.0),
                 ),
                 onTap: () {
-                  _signOut();
+                  _signOutDialog(context);
                 },
               ),
             SizedBox(height: 40,),
@@ -176,6 +175,52 @@ class ProfileScreen extends StatelessWidget {
       ),
     );
   }
+  final String link = "https://www.whatsapp.com/";
+  void _recommendDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            title: new Text("Recommend to a friend and earn 10€ as soon as they spend 10€ on our app!"),
+            //content: new Text("You are awesome!"),
+            actions: <Widget>[
+              new Container(margin: EdgeInsets.all(15),decoration: BoxDecoration(border: Border.all(color: Colors.black)), child: Text(link),),
+              new ElevatedButton(onPressed:() {
+          ClipboardManager.copyToClipBoard(
+          link)
+              .then((result) {
+          final snackBar = SnackBar(
+          content: Text('Copied to Clipboard'),);});}, child: Text("Copy",style: TextStyle(color: Colors.white), ), )
+            ],
+          );
+        });}
+  void _signOutDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20.0))),
+        title: new Text("Log out?"),
+        //content: new Text("You are awesome!"),
+        actions: <Widget>[
+          new FlatButton(
+            child: new Text("No", style: TextStyle(color: Colors.grey),),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          new TextButton(
+            child: new Text("Yes", style: TextStyle(color: Colors.red),),
+            onPressed: () {
+              _signOut().then((value) => Navigator.of(context).pop());
+            },
+          ),
+        ],
+      );
+    });}
 }
 final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
@@ -186,4 +231,9 @@ Future<void> _signOut() async {
 void _navigateToProfilePage(BuildContext context) {
   Navigator.of(context)
       .push(MaterialPageRoute(builder: (context) => ProfilePage()));
+}
+
+void _navigateToInfoPage(BuildContext context) {
+  Navigator.of(context)
+      .push(MaterialPageRoute(builder: (context) => HelpPage()));
 }

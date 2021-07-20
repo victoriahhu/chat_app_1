@@ -77,7 +77,7 @@ class CategoriesRow extends StatelessWidget {
               onTap: ()=> Navigator.pushReplacement(
                   context,
                   PageTransition(
-                      child: ServicesScreen(), type: PageTransitionType.rightToLeftWithFade)),
+                      child: EventsScreen(), type: PageTransitionType.rightToLeftWithFade)),
               child: Container(
                 decoration: BoxDecoration(
                     boxShadow: [
@@ -89,7 +89,7 @@ class CategoriesRow extends StatelessWidget {
                     BorderRadius.all(Radius.circular(50)), color: Colors.grey.shade100),
                 height: 40.0,
                 width: 100.0,
-                child: Center(child:Text("Services", style: TextStyle(fontWeight: FontWeight.bold),)),
+                child: Center(child:Text("Around you", style: TextStyle(fontWeight: FontWeight.bold),)),
               ),
             ),
             SizedBox(width: 7,),

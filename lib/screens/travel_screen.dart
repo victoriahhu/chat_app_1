@@ -438,6 +438,6 @@ class _TravelScreenState extends State<TravelScreen> {
 
 void _navigateToConsumptionScreen(BuildContext context) {
   Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => ConsumptionScreen()));
+      .push(MaterialPageRoute(builder: (context) => ForYouPage()));
 }
 

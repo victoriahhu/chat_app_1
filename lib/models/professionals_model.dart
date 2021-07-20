@@ -1,17 +1,20 @@
+import 'package:chatapp/screens/all_screens.dart';
+
 class ProfessionalsModel {
   String name;
   String tagLine;
   String image;
   String description;
+  Object pageRoute;
 
 
   ProfessionalsModel(this.name, this.tagLine, this.image,
-      this.description, );
+      this.description, this.pageRoute);
 }
 
 List<ProfessionalsModel> proRecommendations = proData
     .map((item) => ProfessionalsModel(item['name'], item['tagLine'],
-    item['image'], item['description'], ))
+    item['image'], item['description'], item["pageRoute"]))
     .toList();
 
 var proData = [
@@ -23,7 +26,7 @@ var proData = [
 
     "description":
     "",
-    // "price":
+    "pageRoute": PersonnelOverview(),
   },
   {
     "name": "Business",
@@ -32,7 +35,7 @@ var proData = [
     "https://www.bbva.com/wp-content/uploads/2018/02/business-angel-inversor-negocios-startup-meeting-networking-BBVA-1-e1517842951593.jpg",
     "description":
     "",
-    //"price":
+    "pageRoute":"",
   },
   {
     "name": "Engineering",
@@ -42,7 +45,7 @@ var proData = [
 
     "description":
     "",
-    //"price": 110
+    "pageRoute":"",
   },
   {
     "name": "Healthcare",
@@ -52,7 +55,7 @@ var proData = [
 
     "description":
     "",
-    //"price": 180
+    "pageRoute":"",
   },
   {
     "name": "Education",
@@ -62,6 +65,6 @@ var proData = [
 
     "description":
     "",
-    //"price": 200
+    "pageRoute":"",
   },
 ];

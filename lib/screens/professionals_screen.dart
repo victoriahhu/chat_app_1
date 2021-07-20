@@ -148,8 +148,7 @@ class _ProfessionalsScreenState extends State<ProfessionalsScreen> {
                         (int index) => GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => SelectedProfessionalsScreen(
-                                proModel: proRecommendations[index])));
+                            builder: (context) => proRecommendations[index].pageRoute));
                       },
                       child: Container(
                         margin: EdgeInsets.only(right: 28.8),
@@ -337,5 +336,5 @@ class _ProfessionalsScreenState extends State<ProfessionalsScreen> {
 
 void _navigateToConsumptionScreen(BuildContext context) {
   Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => ConsumptionScreen()));
+      .push(MaterialPageRoute(builder: (context) => ForYouPage()));
 }
