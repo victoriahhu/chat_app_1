@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:clipboard_manager/clipboard_manager.dart';
+import 'package:clipboard/clipboard.dart';
 import '../widgets/message_bubble.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -177,6 +177,18 @@ class ProfileScreen extends StatelessWidget {
   }
   final String link = "https://www.whatsapp.com/";
   void _recommendDialog(BuildContext context) {
+    Future<void> _copyLink() async {
+      FlutterClipboard.copy(
+          link);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        elevation: 6.0,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15)),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.green,
+        content: Text('Copied!', style: TextStyle(color: Colors.white),),
+      ));
+    }
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -187,12 +199,7 @@ class ProfileScreen extends StatelessWidget {
             //content: new Text("You are awesome!"),
             actions: <Widget>[
               new Container(margin: EdgeInsets.all(15),decoration: BoxDecoration(border: Border.all(color: Colors.black)), child: Text(link),),
-              new ElevatedButton(onPressed:() {
-          ClipboardManager.copyToClipBoard(
-          link)
-              .then((result) {
-          final snackBar = SnackBar(
-          content: Text('Copied to Clipboard'),);});}, child: Text("Copy",style: TextStyle(color: Colors.white), ), )
+              new ElevatedButton(onPressed: _copyLink, child: Text("Copy",style: TextStyle(color: Colors.white), ), )
             ],
           );
         });}

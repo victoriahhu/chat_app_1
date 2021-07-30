@@ -11,3 +11,4 @@ export 'tab_widget1.dart';
 export 'drop_down_supermarket.dart';
 export 'counter.dart';
 export 'restaurant_tile.dart';
+export 'fullscreen_image.dart';

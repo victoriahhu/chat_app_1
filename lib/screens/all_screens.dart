@@ -12,7 +12,6 @@ export 'events_screen.dart';
 export 'travel_screen.dart';
 export 'selected_place_screen.dart';
 export 'selected_hotel_screen.dart';
-export 'selected_professionals.dart';
 export 'profile_page.dart';
 export 'supermarket_overview.dart';
 export 'italian_screen.dart';

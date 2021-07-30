@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import '../widgets/new_message.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class MessageImagePicker extends StatefulWidget {
   MessageImagePicker(this.iimagePickFn);
@@ -21,7 +22,24 @@ class _MessageImagePickerState extends State<MessageImagePicker> {
     setState(() {
       ppickedImage=pickedImageFile;
     });
-    widget.iimagePickFn(ppickedImage);
+    //widget.iimagePickFn(ppickedImage);
+    final user= await FirebaseAuth.instance.currentUser();
+    final userData= await Firestore.instance.collection("users").document(user.uid).get();
+    final ref = FirebaseStorage.instance
+        .ref()
+        .child('image')
+        .child(user.uid + '.jpg');
+
+    await ref.putFile(ppickedImage).onComplete;
+
+    final url = await ref.getDownloadURL();
+    Firestore.instance.collection("chat").add({
+      "image": url,
+      "createdAt": Timestamp.now(),
+      "userId": user.uid,
+      "username": userData["username"],
+      "userImage": userData["image_url"]
+    });
   }
   @override
   Widget build(BuildContext context) {

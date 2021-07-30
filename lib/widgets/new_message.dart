@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flushbar/flushbar.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class NewMessage extends StatefulWidget {
   @override
@@ -15,10 +16,10 @@ class NewMessage extends StatefulWidget {
 }
 
 class _NewMessageState extends State<NewMessage> {
-   File ppickedImage;
+   String ppickedImage;
   final _controller= new TextEditingController();
   void _pickedImage(File image){
-    ppickedImage=image;
+    ppickedImage=image.toString();
   }
   var _enteredMessage="";
   void _sendMessage () async {
@@ -27,7 +28,7 @@ class _NewMessageState extends State<NewMessage> {
     final userData= await Firestore.instance.collection("users").document(user.uid).get();
     Firestore.instance.collection("chat").add({
       "text": _enteredMessage,
-      "image": ppickedImage,
+      //"image": ppickedImage,
       "createdAt": Timestamp.now(),
       "userId": user.uid,
       "username": userData["username"],
@@ -35,34 +36,35 @@ class _NewMessageState extends State<NewMessage> {
     });
     _controller.clear();
   }
+
+   File file;
+   void showFilePicker(FileType fileType) async {
+     final pickedFile = await FilePicker.getFile(type: fileType);
+     setState(() {
+       file=pickedFile;
+     });
+     final user= await FirebaseAuth.instance.currentUser();
+     final userData= await Firestore.instance.collection("users").document(user.uid).get();
+     final ref = FirebaseStorage.instance
+         .ref()
+         .child('file')
+         .child(user.uid + '.doc');
+
+     await ref.putFile(file).onComplete;
+
+     final url = await ref.getDownloadURL();
+     Firestore.instance.collection("chat").add({
+       "file": url,
+       "createdAt": Timestamp.now(),
+       "userId": user.uid,
+       "username": userData["username"],
+       "userImage": userData["image_url"]
+     });
+     //Navigator.pop(context);
+
+   }
   @override
   Widget build(BuildContext context) {
-    showFilePicker(FileType fileType) async {
-      File file = await FilePicker.getFile(type: fileType);
-      //chatBloc.dispatch(SendAttachmentEvent(chat.chatId,file,fileType));
-      Navigator.pop(context);
-      showFlushbar(context: context, flushbar: Flushbar(
-        padding: EdgeInsets.all(10),
-        borderRadius: 8,
-        backgroundGradient: LinearGradient(
-          colors: [Colors.green.shade800, Colors.greenAccent.shade700],
-          stops: [0.6, 1],
-        ),
-        boxShadows: [
-          BoxShadow(
-            color: Colors.black45,
-            offset: Offset(3, 3),
-            blurRadius: 3,
-          ),
-        ],
-        // All of the previous Flushbars could be dismissed by swiping down
-        // now we want to swipe to the sides
-        dismissDirection: FlushbarDismissDirection.VERTICAL,
-        // The default curve is Curves.easeOut
-        forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
-        title: 'Sending attachment...',
-      ));
-    }
     return Container(
       margin: EdgeInsets.only(top: 8),
       padding: EdgeInsets.all(8),
@@ -106,6 +108,7 @@ class _NewMessageState extends State<NewMessage> {
                 child: CupertinoTextField(
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
+                  maxLength: 500,
                   //placeholderStyle: TextStyle(color: Colors.white10, fontSize: 15),
                   placeholder: "   Your message...",
                   style: TextStyle(color: Colors.black, ),
