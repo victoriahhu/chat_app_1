@@ -21,3 +21,5 @@ export 'events_screen.dart';
 export 'user_profile.dart';
 export 'help_page.dart';
 export 'P2P_pay.dart';
+export 'meetings_page.dart';
+export 'myorders_page.dart';

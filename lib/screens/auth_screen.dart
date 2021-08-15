@@ -21,6 +21,8 @@ class _AuthScreenState extends State<AuthScreen> {
       String email,
       String password,
       String username,
+      String birth,
+      String address,
       File image,
       bool isLogin,
       BuildContext ctx,
@@ -42,6 +44,16 @@ class _AuthScreenState extends State<AuthScreen> {
           password: password,
         );
 
+        if(!isLogin){
+          try {
+            await authResult.user.sendEmailVerification();
+            //return user.uid;
+          } catch (e) {
+            print("An error occurred while trying to send email verification");
+            print(e.message);
+          }
+        }
+
         final ref = FirebaseStorage.instance
             .ref()
             .child('user_image')
@@ -57,6 +69,8 @@ class _AuthScreenState extends State<AuthScreen> {
             .setData({
           'username': username,
           'email': email,
+          "date_of_birth": birth,
+          "address": address,
           'image_url': url,
         });
       }

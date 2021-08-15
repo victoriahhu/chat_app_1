@@ -6,6 +6,7 @@ class Product{
   final String description;
   @required final double price;
   @required final String imageUrl;
+  final int numberItems;
   bool isFavorite=false;
-  Product({this.id,this.title,this.description,this.price,this.imageUrl,this.isFavorite});
+  Product({this.id,this.title,this.description,this.price,this.imageUrl,this.numberItems,this.isFavorite});
 }

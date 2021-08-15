@@ -9,3 +9,4 @@ export 'product.dart';
 export 'product_detail_popup.dart';
 export 'user.dart';
 export 'user_gridtile.dart';
+export 'foryou_item.dart';

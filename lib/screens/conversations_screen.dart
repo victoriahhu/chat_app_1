@@ -4,7 +4,7 @@ import '../widgets/all_widgets.dart';
 import '../screens/all_screens.dart';
 import 'package:flutter/cupertino.dart';
 
-class ConversationsScreen extends StatefulWidget {
+class ConversationsScreen extends StatefulWidget with NavigationStates {
   @override
   _ConversationsScreenState createState() => _ConversationsScreenState();
 }
@@ -29,7 +29,7 @@ class _ConversationsScreenState extends State<ConversationsScreen> {
               width: double.infinity,
               color: Colors.blueAccent[400],
               child: Text(
-                "  Conversations",
+                "       Conversations",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 30,
@@ -37,12 +37,8 @@ class _ConversationsScreenState extends State<ConversationsScreen> {
               ),
             ),
             SizedBox(height: 20,),
-          Padding( padding: EdgeInsets.symmetric(horizontal: 15),
-            child: CupertinoTextField(
-              prefix: Icon(Icons.search),
-              placeholder: 'search',
-            ),
-          ),
+           Container(child: CupertinoSearchTextField(), height: 40, padding: EdgeInsets.symmetric(horizontal:20),),
+
             Padding(padding: EdgeInsets.all(15), child:
             CupertinoSlidingSegmentedControl(
                 children: {

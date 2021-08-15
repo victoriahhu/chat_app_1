@@ -98,6 +98,7 @@ class SupermarketOverview extends StatelessWidget {
           SizedBox(height: 20,),
              Expanded(
                child: SizedBox(height:MediaQuery.of(context).size.height*1.5, child: GridView.builder(
+                 physics: ScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     childAspectRatio: 3 / 4,
                     crossAxisCount: 2,

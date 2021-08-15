@@ -9,12 +9,13 @@ class ConversationsTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return
     Padding(
-      padding: const EdgeInsets.all(5.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: GestureDetector(
         onTap: () {
           _navigateToNextScreen(context);
         },
         child: Container(
+          //padding: EdgeInsets.symmetric(horizontal: 20),
             height: MediaQuery.of(context).size.height*0.2,
             decoration: BoxDecoration( boxShadow: [
               BoxShadow(

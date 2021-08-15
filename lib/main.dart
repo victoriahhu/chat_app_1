@@ -1,5 +1,6 @@
 import 'package:chatapp/screens/chat_screen.dart';
 import './screens/auth_screen.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,7 +9,10 @@ import './screens/home_screen.dart';
 import './screens/all_screens.dart';
 
 void main() {
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+  runApp(MyApp());});
 }
 
 class MyApp extends StatelessWidget {

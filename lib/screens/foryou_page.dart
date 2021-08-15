@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flappy_search_bar/search_bar_style.dart';
-import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flutter/cupertino.dart';
 import '../widgets/all_widgets.dart';
 
@@ -28,17 +26,12 @@ class ForYouPage extends StatelessWidget {
                 ),
                 SizedBox(height: 10.00,),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Container(
-                    height: 40,
-                    child: CupertinoTextField(
-                      prefix: Icon(Icons.search, color: Colors.grey,),
-                      placeholder: '  search',
-                    ),
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Container(child: CupertinoSearchTextField(), height: 40, padding: EdgeInsets.symmetric(horizontal:15),)
                   ),
-                ),
                 CategoriesRow(),
-                SizedBox(height: 100.00,),
+                SizedBox(height: 10.00,),
+                ForYouGrid(),
               ]),
          )
     );

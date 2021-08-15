@@ -1,8 +1,9 @@
 import 'dart:io';
-
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import './user_image_picker.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class AuthForm extends StatefulWidget {
   AuthForm(
@@ -15,6 +16,8 @@ class AuthForm extends StatefulWidget {
       String email,
       String password,
       String userName,
+      String birth,
+      String address,
       File image,
       bool isLogin,
       BuildContext ctx,
@@ -30,6 +33,8 @@ class _AuthFormState extends State<AuthForm> {
   var _userEmail = '';
   var _userName = '';
   var _userPassword = '';
+  var _userBirth = "";
+  var _userAddress = "" ;
   File _userImageFile;
 
   void _pickedImage(File image) {
@@ -56,6 +61,8 @@ class _AuthFormState extends State<AuthForm> {
         _userEmail.trim(),
         _userPassword.trim(),
         _userName.trim(),
+        _userBirth.trim(),
+        _userAddress.trim(),
         _userImageFile,
         _isLogin,
         context,
@@ -65,6 +72,79 @@ class _AuthFormState extends State<AuthForm> {
 
   @override
   Widget build(BuildContext context) {
+    String _date = "Date of Birth";
+
+    Widget birthPicker = Padding(key: ValueKey("date_of_birth"),padding: EdgeInsets.only(
+        top: 20.0, left: 10.0, right: 10.0),
+      child: Column(
+        children: <Widget>[
+          SizedBox(
+            height: 60.0,
+            child: FlatButton(
+              shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                      color: Colors.blueAccent
+                  ),
+                  borderRadius: BorderRadius.circular(5.0)),
+              onPressed: () {
+                DatePicker.showDatePicker(context,
+                    theme: DatePickerTheme(
+                      containerHeight: 210.0,
+                    ),
+                    showTitleActions: true,
+                    minTime: DateTime(1900, 1, 1),
+                    maxTime: DateTime.now(),
+                    onConfirm: (date) {
+                      print('confirm $date');
+                      _date = '${date.day}/${date.month}/${date.year}';
+                      _userBirth=_date;
+                      setState(() {});
+                    },
+                    currentTime: DateTime.now(),
+                    locale: LocaleType.en);
+              },
+              child: Container(
+                alignment: Alignment.center,
+                height: 50.0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Container(
+
+                          child: Row(
+                            children: <Widget>[
+                              Text("Date of birth  "),
+                              Icon(
+                                Icons.cake,
+
+                                color: Colors.blueAccent,
+                              ),
+                              Text(
+                                "  $_userBirth",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17.0,
+                                    fontStyle: FontStyle.normal),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+
+                  ],
+                ),
+              ),
+              //color: Colors.white,
+            ),
+          ),
+// datetime()
+        ],
+      ),
+    );
+
     return Center(
       child: Card(
         shape: RoundedRectangleBorder(
@@ -111,7 +191,7 @@ class _AuthFormState extends State<AuthForm> {
                         }
                         return null;
                       },
-                      decoration: InputDecoration(labelText: 'Username'),
+                      decoration: InputDecoration(labelText: 'Full name'),
                       onSaved: (value) {
                         _userName = value;
                       },
@@ -130,6 +210,21 @@ class _AuthFormState extends State<AuthForm> {
                       _userPassword = value;
                     },
                   ),
+                  !_isLogin?birthPicker: SizedBox(width: 0, height: 0,),
+                  !_isLogin?TextFormField(
+                    autocorrect: false,
+                    key: ValueKey("address"),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Your permanent address is required.';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(labelText: 'Permanent address', hintText: "street, city, state/province, zip/postal code"),
+                    onSaved: (value) {
+                      _userAddress = value;
+                    },
+                  ): SizedBox(height: 0, width: 0,),
                   SizedBox(height: 12),
                   if (widget.isLoading) CupertinoActivityIndicator(animating: true,),
                   if (!widget.isLoading)
@@ -158,4 +253,3 @@ class _AuthFormState extends State<AuthForm> {
     );
   }
 }
-

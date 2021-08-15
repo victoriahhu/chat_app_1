@@ -1,6 +1,7 @@
 import '../screens/all_screens.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../widgets/all_widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -14,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 class MyFirstTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ConversationsScreen();
+    return SideBarLayout();
   }
 }
 

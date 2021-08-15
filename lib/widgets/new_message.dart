@@ -35,6 +35,8 @@ class _NewMessageState extends State<NewMessage> {
       "userImage": userData["image_url"]
     });
     _controller.clear();
+    _enteredMessage="";
+    setState(() {});
   }
 
    File file;
@@ -120,8 +122,8 @@ class _NewMessageState extends State<NewMessage> {
           ),
               )),
           _enteredMessage.trim().isEmpty?IconButton(icon: Icon(Icons.mic_none, color: Colors.blueAccent[400]), onPressed: (){},):SizedBox(width: 4,),
-           _enteredMessage.trim().isEmpty?MessageImagePicker(_pickedImage):SizedBox(width: 4,),
-          _enteredMessage.trim().isEmpty?SizedBox(width: 4,):CircleAvatar(
+           _enteredMessage.trim().isEmpty?MessageImagePicker(_pickedImage):SizedBox(width: 0,),
+          _enteredMessage.trim()==""?SizedBox(width: 0,):CircleAvatar(
              radius: 18,
              backgroundColor: Colors.green,
              child: Center(
@@ -132,7 +134,7 @@ class _NewMessageState extends State<NewMessage> {
                         color: Colors.white,
                         size: 22,
                       ),
-                      onPressed:  _sendMessage),
+                      onPressed:  _enteredMessage.trim()==""?(){}:_sendMessage,),
              ),
            ),
         ],
